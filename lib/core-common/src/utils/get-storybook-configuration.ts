@@ -1,4 +1,3 @@
-// @TODO Yann: this should be deleted and references should be moved to @storybook/core-common
 /*
  * Lifted from chromatic-cli
  *
@@ -10,6 +9,10 @@ export function getStorybookConfiguration(
   shortName: string,
   longName: string
 ) {
+  if (!storybookScript) {
+    return null;
+  }
+
   const parts = storybookScript.split(/[\s='"]+/);
   let index = parts.indexOf(longName);
   if (index === -1) {

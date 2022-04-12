@@ -51,6 +51,16 @@ export interface CoreConfig {
   disableWebpackDefaults?: boolean;
   channelOptions?: Partial<TelejsonOptions>;
   /**
+   * Disables Storybook telemetry
+   * @see https://storybook.js.org/telemetry
+   */
+  disableTelemetry?: boolean;
+  /**
+   * Enable crash reports to be sent to Storybook telemetry
+   * @see https://storybook.js.org/telemetry
+   */
+  enableCrashReports?: boolean;
+  /**
    * enable CORS headings to run document in a "secure context"
    * see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer#security_requirements
    * This enables these headers in development-mode:
@@ -141,6 +151,8 @@ export interface PackageJson {
   version: string;
   dependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
+  peerDependencies?: Record<string, string>;
+  [key: string]: any;
 }
 
 // TODO: This could be exported to the outside world and used in `options.ts` file of each `@storybook/APP`
@@ -165,6 +177,8 @@ export interface CLIOptions {
   ignorePreview?: boolean;
   previewUrl?: string;
   forceBuildPreview?: boolean;
+  disableTelemetry?: boolean;
+  enableCrashReports?: boolean;
   host?: string;
   /**
    * @deprecated Use 'staticDirs' Storybook Configuration option instead
